@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: auto; }
+    h2 { color: #5682b8; }
+    .qa { border-bottom: 1px solid #ddd; padding: 10px 0; }
+    .question { font-weight: bold; }
+    .answer { color: #333; margin-top: 5px; }
+    form { margin-bottom: 30px; }
+    input, textarea { width: 100%; padding: 8px; margin: 5px 0; }
+    button { padding: 10px; background: #5682b8; color: white; border: none; }
+  </style>
+</head>
+<body>
+  <h2>질문하기</h2>
+  <form id="qForm">
+    <input type="text" name="name" placeholder="이름" required>
+    <input type="email" name="email" placeholder="이메일" required>
+    <textarea name="question" placeholder="질문 내용" required></textarea>
+    <button type="submit">제출</button>
+  </form>
+
+  <h2>질문과 답변</h2>
+  <div id="qaList">로딩 중...</div>
+
+  <script>
+    // 질문 제출
+    document.getElementById("qForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = Object.fromEntries(new FormData(this).entries());
+      google.script.run.withSuccessHandler(function(msg) {
+        alert(msg);
+        location.reload();
+      }).saveQuestion(formData);
+    });
+
+    // 질문과 답변 불러오기
+    google.script.run.withSuccessHandler(function(list) {
+      const container = document.getElementById("qaList");
+      container.innerHTML = "";
+      list.forEach(function(item) {
+        const qabox = document.createElement("div");
+        qabox.className = "qa";
+        qabox.innerHTML = `<div class="question">Q: ${item.question}</div>
+                           <div class="answer">A: ${item.answer || "아직 답변이 없습니다."}</div>`;
+        container.appendChild(qabox);
+      });
+    }).getQAList();
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+:root {
+  --main-color: #5682b8;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background-color: #f9f9f9;
+}
+
+header {
+  background-color: var(--main-color);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+header .logo {
+  height: 50px;
+  margin-right: 20px;
+}
+
+nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  background-color: #ddd;
+  padding: 10px;
+  text-align: center;
+}

@@ -1,0 +1,18 @@
+title: 우리 동아리
+description: 우리 동아리 공식 홈페이지
+theme: minima
+baseurl: "" 
+url: "https://USERNAME.github.io" # GitHub Pages 주소
+
+# 네비게이션 메뉴
+nav:
+  - name: "소개"
+    link: "/소개"
+  - name: "활동"
+    link: "/활동"
+  - name: "공지"
+    link: "/공지"
+  - name: "지원"
+    link: "/지원"
+  - name: "FAQ"
+    link: "/FAQ"
